@@ -39,7 +39,7 @@ let keywordConfig = {
 };
 
 // Define default endpoint
-let endpoint = 'http://localhost/input.json';
+let endpoint = 'https://jsonplaceholder.typicode.com/posts/1/comments';
 
 /**
 * parseJSON - async function to retrieve JSON object from endpoint, process into result array and then invoke visualisations

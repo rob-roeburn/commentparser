@@ -7,6 +7,7 @@ A parsing tool to process JSON data and produce visualisation.
 * [Svelte](https://svelte.dev/) - The web framework used
 * [NPM](https://www.npmjs.com/) - Package Management
 * [FusionCharts](https://www.fusioncharts.com/) - Visualisation plugin
+* [AWS Amplify](https://aws.amazon.com/amplify/) - Deployment
 
 ## Authors
 

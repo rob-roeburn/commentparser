@@ -1000,18 +1000,18 @@ var app = (function () {
     			hr2 = element("hr");
     			attr_dev(input, "id", "endpoint");
     			attr_dev(input, "class", "svelte-uma162");
-    			add_location(input, file$1, 169, 71, 4916);
+    			add_location(input, file$1, 171, 71, 4919);
     			attr_dev(div0, "id", "endpoint-title");
-    			add_location(div0, file$1, 169, 0, 4845);
+    			add_location(div0, file$1, 171, 0, 4848);
     			attr_dev(div1, "id", "comment-container");
-    			add_location(div1, file$1, 170, 0, 4989);
-    			add_location(hr0, file$1, 170, 65, 5054);
+    			add_location(div1, file$1, 172, 0, 4992);
+    			add_location(hr0, file$1, 172, 65, 5057);
     			attr_dev(div2, "id", "suffix-container");
-    			add_location(div2, file$1, 171, 0, 5061);
-    			add_location(hr1, file$1, 171, 62, 5123);
+    			add_location(div2, file$1, 173, 0, 5064);
+    			add_location(hr1, file$1, 173, 62, 5126);
     			attr_dev(div3, "id", "keyword-container");
-    			add_location(div3, file$1, 172, 0, 5130);
-    			add_location(hr2, file$1, 172, 66, 5196);
+    			add_location(div3, file$1, 174, 0, 5133);
+    			add_location(hr2, file$1, 174, 66, 5199);
 
     			dispose = [
     				listen_dev(input, "input", ctx.input_input_handler),
@@ -1148,7 +1148,7 @@ var app = (function () {
     	id: 'keywordChart',
     	type: 'column2d',
     	width: '100%',
-     	height: '30%',
+    	height: '30%',
     	dataSource: {},
     	renderAt: 'keyword-container'
     };
@@ -1157,11 +1157,11 @@ var app = (function () {
     let endpoint = 'https://jsonplaceholder.typicode.com/posts/1/comments';
 
     /**
-    * parseJSON - async function to retrieve JSON object from endpoint, process into result array and then invoke visualisations
-    */
+     * parseJSON - async function to retrieve JSON object from endpoint, process into result array and then invoke visualisations
+     */
     const parseJSON = async () => {
     	// Await fetch of  endpoint URL
-    	const response = await fetch( endpoint );
+    	const response = await fetch(endpoint);
     	// Await response endpoint URL
     	const responsejson = await response.json();
     	// Initialise resultData array and main elements as empty objs
@@ -1169,9 +1169,9 @@ var app = (function () {
     	resultData['comments'] = {};
     	resultData['suffixes'] = {};
     	resultData['keywords'] = {};
-      // Processing code - iterate over each comment once
+    	// Processing code - iterate over each comment once
     	for (let comment of responsejson) {
-        // Get postId from comment and set new comments[postId] element to 1, or increment if the element exists already
+    		// Get postId from comment and set new comments[postId] element to 1, or increment if the element exists already
     		resultData['comments'][comment.postId] = typeof(resultData['comments'][comment.postId]) === 'undefined' ?
     			resultData['comments'][comment.postId] = 1 :
     			resultData['comments'][comment.postId] += 1;
@@ -1190,13 +1190,13 @@ var app = (function () {
     		}
     	}
     	/**
-    	* Each comment iterated once - resultData now contains:
-    	* [comments] - each index is the post ID and the value is the number of posts per comment
-    	* [suffixes] - each index is the suffix ID and the value is the number of occurrences
-    	* [keywords] - each index is the keyword from the body and the value is the number of occurrences
-    	*/
+    	 * Each comment iterated once - resultData now contains:
+    	 * [comments] - each index is the post ID and the value is the number of posts per comment
+    	 * [suffixes] - each index is the suffix ID and the value is the number of occurrences
+    	 * [keywords] - each index is the keyword from the body and the value is the number of occurrences
+    	 */
 
-      // Convert resultData elemenst to label/value data format for FusionCharts
+    	// Convert resultData elemenst to label/value data format for FusionCharts
     	comments = Object.entries(resultData['comments']);
     	let commentData = [];
     	for (let comment in comments) {
@@ -1214,8 +1214,8 @@ var app = (function () {
     			'chart': {
     				'caption': 'Comments Per Post',
     				'showPercentInTooltip': '1',
-    				'xAxisName':'Post ID',
-    				'yAxisName':'Comments',
+    				'xAxisName': 'Post ID',
+    				'yAxisName': 'Comments',
     				'theme': 'fusion'
     			},
     			'data': commentData
@@ -1235,7 +1235,7 @@ var app = (function () {
     		width: '100%',
     		height: '30%',
     		renderAt: 'suffix-container',
-    		dataSource : {
+    		dataSource: {
     			'chart': {
     				'caption': 'Email Suffix Distribution',
     				'showPercentInTooltip': '1',
@@ -1258,7 +1258,7 @@ var app = (function () {
     		width: '100%',
     		height: '30%',
     		renderAt: 'keyword-container',
-    		dataSource : {
+    		dataSource: {
     			'chart': {
     				'caption': 'Post Keyword Frequency',
     				'showPercentInTooltip': '1',

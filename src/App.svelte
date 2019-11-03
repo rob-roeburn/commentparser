@@ -4,7 +4,9 @@
 import FusionCharts from 'fusioncharts';
 import Charts from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
-import SvelteFC, {fcRoot} from 'svelte-fusioncharts';
+import SvelteFC, {
+	fcRoot
+} from 'svelte-fusioncharts';
 fcRoot(FusionCharts, Charts, FusionTheme);
 
 // Placeholder charts config - initialization prior to JSON being parsed
@@ -33,7 +35,7 @@ let keywordConfig = {
 	id: 'keywordChart',
 	type: 'column2d',
 	width: '100%',
- 	height: '30%',
+	height: '30%',
 	dataSource: {},
 	renderAt: 'keyword-container'
 };
@@ -42,11 +44,11 @@ let keywordConfig = {
 let endpoint = 'https://jsonplaceholder.typicode.com/posts/1/comments';
 
 /**
-* parseJSON - async function to retrieve JSON object from endpoint, process into result array and then invoke visualisations
-*/
+ * parseJSON - async function to retrieve JSON object from endpoint, process into result array and then invoke visualisations
+ */
 const parseJSON = async () => {
 	// Await fetch of  endpoint URL
-	const response = await fetch( endpoint );
+	const response = await fetch(endpoint);
 	// Await response endpoint URL
 	const responsejson = await response.json();
 	// Initialise resultData array and main elements as empty objs
@@ -54,9 +56,9 @@ const parseJSON = async () => {
 	resultData['comments'] = {};
 	resultData['suffixes'] = {};
 	resultData['keywords'] = {};
-  // Processing code - iterate over each comment once
+	// Processing code - iterate over each comment once
 	for (let comment of responsejson) {
-    // Get postId from comment and set new comments[postId] element to 1, or increment if the element exists already
+		// Get postId from comment and set new comments[postId] element to 1, or increment if the element exists already
 		resultData['comments'][comment.postId] = typeof(resultData['comments'][comment.postId]) === 'undefined' ?
 			resultData['comments'][comment.postId] = 1 :
 			resultData['comments'][comment.postId] += 1;
@@ -75,13 +77,13 @@ const parseJSON = async () => {
 		}
 	}
 	/**
-	* Each comment iterated once - resultData now contains:
-	* [comments] - each index is the post ID and the value is the number of posts per comment
-	* [suffixes] - each index is the suffix ID and the value is the number of occurrences
-	* [keywords] - each index is the keyword from the body and the value is the number of occurrences
-	*/
+	 * Each comment iterated once - resultData now contains:
+	 * [comments] - each index is the post ID and the value is the number of posts per comment
+	 * [suffixes] - each index is the suffix ID and the value is the number of occurrences
+	 * [keywords] - each index is the keyword from the body and the value is the number of occurrences
+	 */
 
-  // Convert resultData elemenst to label/value data format for FusionCharts
+	// Convert resultData elemenst to label/value data format for FusionCharts
 	comments = Object.entries(resultData['comments']);
 	let commentData = [];
 	for (let comment in comments) {
@@ -100,8 +102,8 @@ const parseJSON = async () => {
 			'chart': {
 				'caption': 'Comments Per Post',
 				'showPercentInTooltip': '1',
-				'xAxisName':'Post ID',
-				'yAxisName':'Comments',
+				'xAxisName': 'Post ID',
+				'yAxisName': 'Comments',
 				'theme': 'fusion'
 			},
 			'data': commentData
@@ -122,7 +124,7 @@ const parseJSON = async () => {
 		width: '100%',
 		height: '30%',
 		renderAt: 'suffix-container',
-		dataSource : {
+		dataSource: {
 			'chart': {
 				'caption': 'Email Suffix Distribution',
 				'showPercentInTooltip': '1',
@@ -146,7 +148,7 @@ const parseJSON = async () => {
 		width: '100%',
 		height: '30%',
 		renderAt: 'keyword-container',
-		dataSource : {
+		dataSource: {
 			'chart': {
 				'caption': 'Post Keyword Frequency',
 				'showPercentInTooltip': '1',

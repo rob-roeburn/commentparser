@@ -1000,18 +1000,18 @@ var app = (function () {
     			hr2 = element("hr");
     			attr_dev(input, "id", "endpoint");
     			attr_dev(input, "class", "svelte-uma162");
-    			add_location(input, file$1, 169, 71, 4890);
+    			add_location(input, file$1, 169, 71, 4916);
     			attr_dev(div0, "id", "endpoint-title");
-    			add_location(div0, file$1, 169, 0, 4819);
+    			add_location(div0, file$1, 169, 0, 4845);
     			attr_dev(div1, "id", "comment-container");
-    			add_location(div1, file$1, 170, 0, 4963);
-    			add_location(hr0, file$1, 170, 65, 5028);
+    			add_location(div1, file$1, 170, 0, 4989);
+    			add_location(hr0, file$1, 170, 65, 5054);
     			attr_dev(div2, "id", "suffix-container");
-    			add_location(div2, file$1, 171, 0, 5035);
-    			add_location(hr1, file$1, 171, 62, 5097);
+    			add_location(div2, file$1, 171, 0, 5061);
+    			add_location(hr1, file$1, 171, 62, 5123);
     			attr_dev(div3, "id", "keyword-container");
-    			add_location(div3, file$1, 172, 0, 5104);
-    			add_location(hr2, file$1, 172, 66, 5170);
+    			add_location(div3, file$1, 172, 0, 5130);
+    			add_location(hr2, file$1, 172, 66, 5196);
 
     			dispose = [
     				listen_dev(input, "input", ctx.input_input_handler),
@@ -1154,7 +1154,7 @@ var app = (function () {
     };
 
     // Define default endpoint
-    let endpoint = 'http://localhost/input.json';
+    let endpoint = 'https://jsonplaceholder.typicode.com/posts/1/comments';
 
     /**
     * parseJSON - async function to retrieve JSON object from endpoint, process into result array and then invoke visualisations

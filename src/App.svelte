@@ -13,7 +13,7 @@ const fetchEndpoint = async () => {
 	storedJSON.set(responsejson);
 }
 
-// Initialise config arrays for each FusionChart component call
+// Initialise config objects for each FusionChart component call
 let comments = {
 	type: 'comments',
 	element: 'postId',

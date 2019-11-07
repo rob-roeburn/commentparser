@@ -26,16 +26,16 @@ const parseJSON = (targetJSON) => {
 			switch (config.type) {
 				case 'comments':
 					// increment postId in result array if it exists, or create if not
-					resultData[comment.postId] = typeof(resultData[comment.postId]) === 'undefined' ? resultData[comment.postId] = 1 : resultData[comment.postId] += 1;
+					resultData[comment[config.element]] = typeof(resultData[comment[config.element]]) === 'undefined' ? resultData[comment[config.element]] = 1 : resultData[comment[config.element]] += 1;
 					break;
 				case 'suffixes':
 					// Use regex to extract email suffix, then increment array if the suffix exists, or create if not
-					let emailSuffix = comment.email.replace(/[A-z0-9._]+@[A-z0-9._]+\./, '');
+					let emailSuffix = comment[config.element].replace(/[A-z0-9._]+@[A-z0-9._]+\./, '');
 					resultData[emailSuffix] = typeof(resultData[emailSuffix]) === 'undefined' ? resultData[emailSuffix] = 1 : resultData[emailSuffix] += 1;
 					break;
 				case 'keywords':
 					// Tokenise body data on both space and newline, iterate over each body element
-					for (let bodyElement of comment.body.split(/[\n]|[\ ]/)) {
+					for (let bodyElement of comment[config.element].split(/[\n]|[\ ]/)) {
 						// increment tokenised body text element in array if it exists, or create if not
 						resultData[bodyElement] = typeof(resultData[bodyElement]) === 'undefined' ? resultData[bodyElement] = 1 : resultData[bodyElement] += 1;
 					}
@@ -45,15 +45,13 @@ const parseJSON = (targetJSON) => {
 					console.log("Unsupported type.");
 			}
 		})
-		// Reformat parsed data into Fusion-compatible array for datasource
 		let chartData = [];
-		let workingObj = Object.entries(resultData);
-		for (let element in workingObj) {
+		for (let element in resultData) {
 			chartData.push({
-				'label': workingObj[element][0],
-				'value': workingObj[element][1].toString()
+				'label': element,
+				'value': resultData[element].toString()
 			})
-		};
+		}
 		// Build chart config to load into SvelteFC Fusion component
 		fusionData = {
 			id: config.type + 'Chart',

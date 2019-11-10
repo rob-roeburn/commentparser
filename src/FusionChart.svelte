@@ -15,11 +15,11 @@ let loading = true;
  * parseJSON - process JSON into result array and then invoke visualisations
  */
 const parseJSON = (targetJSON) => {
+	let resultData = [];
 	// Only proceed if JSON valid
-	if (targetJSON !== 0) {
+	if (Object.keys(targetJSON).length > 0) {
 		// Reset loading boolean to true and initialise results array
 		loading = true;
-		let resultData = [];
 		// Processing code - iterate over each comment once
 		targetJSON.forEach(function(comment) {
 			// switch control - each config type requires a different parsing approach
@@ -45,32 +45,32 @@ const parseJSON = (targetJSON) => {
 					console.log("Unsupported type.");
 			}
 		})
-		let chartData = [];
-		for (let element in resultData) {
-			chartData.push({
-				'label': element,
-				'value': resultData[element].toString()
-			})
-		}
-		// Build chart config to load into SvelteFC Fusion component
-		fusionData = {
-			id: config.type + 'Chart',
-			type: config.chartType,
-			width: '100%',
-			height: '30%',
-			dataSource: {
-				'chart': {
-					'caption': config.caption,
-					'showPercentInTooltip': '1',
-					'xAxisName': config.xAxisName,
-					'yAxisName': config.yAxisName,
-					'theme': 'fusion'
-				},
-				'data': chartData // Apply reformatted data to fusionData element
-			}
-		};
-		loading = false;
 	}
+	let chartData = [];
+	for (let element in resultData) {
+		chartData.push({
+			'label': element,
+			'value': resultData[element].toString()
+		})
+	}
+	// Build chart config to load into SvelteFC Fusion component
+	fusionData = {
+		id: config.type + 'Chart',
+		type: config.chartType,
+		width: '100%',
+		height: '30%',
+		dataSource: {
+			'chart': {
+				'caption': config.caption,
+				'showPercentInTooltip': '1',
+				'xAxisName': config.xAxisName,
+				'yAxisName': config.yAxisName,
+				'theme': 'fusion'
+			},
+			'data': chartData // Apply reformatted data to fusionData element
+		}
+	};
+	loading = false;
 };
 
 // Subscribe stored JSON to update chart after parent async

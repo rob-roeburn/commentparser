@@ -18,7 +18,7 @@ let comments = {
 	type: 'comments',
 	element: 'postId',
 	chartType: 'column2d',
-	caption: 'Comments Per Post',
+	caption: 'Comments Each Post',
 	xAxisName: 'Post ID',
 	yAxisName: 'Comments'
 };

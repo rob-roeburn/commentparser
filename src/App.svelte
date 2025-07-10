@@ -4,7 +4,7 @@ import {onMount} from 'svelte';
 import FusionChart from './FusionChart.svelte';
 import {storedJSON} from './Stores.js';
 
-let endpoint = 'https://jsonplaceholder.typicode.com/posts/1/comments';
+let endpoint = 'https://jsonplaceholder.typicode.com/comments';
 
 // fetchEndpoint function will retrieve JSON from the endpoint and store it in the storedJSON variable
 const fetchEndpoint = async () => {
